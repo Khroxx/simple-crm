@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "da-rof-afdf4": {
+      "hosting": {
+        "simple-crm": [
+          "darof-sef34"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "da-rof-afdf4"
+  }
+}

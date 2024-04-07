@@ -1,0 +1,13 @@
+{
+  "hosting": [
+    {
+    "site": "darof-sef34",
+    "public": "public",
+      "target": "simple-crm",
+      "source": ".",
+      "frameworksBackend": {
+        "region": "europe-west1"
+      }
+    }
+  ]
+}
