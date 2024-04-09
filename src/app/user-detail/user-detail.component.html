@@ -1,0 +1,42 @@
+<!-- <p>user-detail works!</p>
+<header>
+
+</header> -->
+
+<mat-card class="user-detail-header">
+    <button mat-icon-button class="menu-top-right" [matMenuTriggerFor]="userMenu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+
+
+    <mat-menu xPosition="before" #userMenu="matMenu">
+        <button mat-menu-item (click)="editUserDetail()">Edit</button>
+        <!-- <button mat-menu-item>Delete</button> -->
+    </mat-menu>
+
+    <img src="assets/img/profile_m.png" alt="">
+    <div class="user-details">
+        <h2>{{user.firstName}} {{user.lastName}}</h2> <br>
+        <p>{{user.email}}</p>
+
+    </div>
+</mat-card>
+<mat-card class="mt-32">
+    <button mat-icon-button class="menu-top-right" [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+
+
+    <mat-menu xPosition="before" #menu="matMenu">
+        <button mat-menu-item (click)="editMenu()">Edit</button>
+        <!-- <button mat-menu-item>Delete</button> -->
+    </mat-menu>
+
+    <mat-card-header>
+        <mat-card-title>Address</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        {{user.street}}<br>
+        {{user.city}} {{user.zipCode}}
+    </mat-card-content>
+</mat-card>

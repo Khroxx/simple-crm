@@ -27,7 +27,7 @@ import { CommonModule } from '@angular/common';
 })
 export class DialogAddUserComponent {
   user = new User();
-  birthDate!: Date;
+  birthDate: Date | any;
   firestore: Firestore = inject(Firestore);
   loading = false;
 
@@ -36,28 +36,18 @@ export class DialogAddUserComponent {
   }
 
   onNoClick(){
-
+    this.dialogRef.close();
   }
 
   saveUser(){
     this.user.birthDate = this.birthDate.getTime();
     this.loading = true;
-    // console.log('Current User: ', this.user);
-    let user: User =    {
-      firstName: this.user.firstName,
-      lastName: this.user.lastName,
-      birthDate: this.user.birthDate,
-      street: this.user.street,
-      zipCode: this.user.zipCode,
-      city: this.user.city
-    }
-    this.firebaseService.addUser(user);
-    
+    this.firebaseService.addUser(this.user);
 
     setTimeout(() => {
       this.loading = false;
       this.dialogRef.close();
-    }, 3000);
+    }, 1500);
   } 
   }
 
