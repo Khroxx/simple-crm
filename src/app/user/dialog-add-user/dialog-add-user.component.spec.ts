@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DialogAddUserComponent } from './dialog-add-user.component';
+import { Firestore } from '@angular/fire/firestore';
+import { RouterModule } from '@angular/router';
 
 describe('DialogAddUserComponent', () => {
   let component: DialogAddUserComponent;
@@ -8,7 +10,7 @@ describe('DialogAddUserComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DialogAddUserComponent]
+      imports: [DialogAddUserComponent,Firestore, RouterModule]
     })
     .compileComponents();
     

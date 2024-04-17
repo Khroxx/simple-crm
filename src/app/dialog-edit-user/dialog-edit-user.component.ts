@@ -24,9 +24,10 @@ import { FirebaseService } from '../firebase-service/firebase.service';
 export class DialogEditUserComponent {
   loading = false;
   user = new User();
+  userId: string | any;
   birthDate: Date | any;
 
-  constructor(private firebaseService: FirebaseService, public dialogRef: MatDialogRef<DialogEditUserComponent>) {
+  constructor(public dialogRef: MatDialogRef<DialogEditUserComponent>, private firebaseService: FirebaseService) {
 
   }
 
@@ -35,13 +36,15 @@ export class DialogEditUserComponent {
   }
 
   saveUser(){
-    this.user.birthDate = this.birthDate.getTime();
     this.loading = true;
-    // this.firebaseService.addUser(this.user);
-
-    setTimeout(() => {
-      this.loading = false;
-      this.dialogRef.close();
-    }, 1500);
+    if (this.userId){
+      this.firebaseService.updateUser(this.userId, this.user).then(() => {
+        // console.log('User updated', this.user);
+        setTimeout(() => {
+          this.loading = false;
+          this.dialogRef.close();
+        }, 1000);
+      });
+    }
   } 
 }

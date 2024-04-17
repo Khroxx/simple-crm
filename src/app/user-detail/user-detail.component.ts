@@ -20,13 +20,14 @@ import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.co
   styleUrl: './user-detail.component.scss'
 })
 export class UserDetailComponent {
-  userId = '';
+  userId: string | any;
   user: User = new User();
+  // unsubGetUser;
 
 
   constructor(private route: ActivatedRoute, private firebaseService: FirebaseService,
      public dialog: MatDialog) {
-
+    // this.unsubGetUser = this.getUser();
   }
 
   ngOnInit() {
@@ -41,13 +42,20 @@ export class UserDetailComponent {
     });
   }
 
+  ngondDestroy() {
+    // this.getUser();
+  }
+
   editMenu() {
     const dialog = this.dialog.open(DialogEditAddressComponent);
-    dialog.componentInstance.user = this.user;
+    dialog.componentInstance.user = new User(this.user);
+    dialog.componentInstance.userId = this.userId;
   }
 
   editUserDetail() {
-    this.dialog.open(DialogEditUserComponent);
+    const dialog = this.dialog.open(DialogEditUserComponent);
+    dialog.componentInstance.user = new User(this.user);
+    dialog.componentInstance.userId = this.userId;
   }
 }
 

@@ -9,8 +9,6 @@ import {MatInputModule} from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { User } from '../../../models/user.class';
-// import { Firestore, collection, collectionData, onSnapshot } from '@angular/fire/firestore';
-// import { Observable } from 'rxjs';
 import { FirebaseService } from '../../firebase-service/firebase.service';
 import { Firestore } from '@angular/fire/firestore';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
@@ -47,7 +45,7 @@ export class DialogAddUserComponent {
     setTimeout(() => {
       this.loading = false;
       this.dialogRef.close();
-    }, 1500);
+    }, 1000);
   } 
   }
 

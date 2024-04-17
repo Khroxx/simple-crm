@@ -67,23 +67,7 @@ export class FirebaseService implements OnDestroy {
 
     async loadUser(userId: string) {
         this.singleUserRef('users', userId);
-        // const singleUserRef = doc(this.userRef(), userId);
-        // const docSnap = await getDoc(singleUserRef);
-        // if (docSnap.exists()) {
-        //     this.user = docSnap.data() as User;
-        // }
     }
-    // setUserObject(obj: any, id: string): User{
-    //     return {
-    //         id: id,
-    //         firstName: obj.firstName,
-    //         lastName: obj.lastName,
-    //         birthDate: obj.birthDate,
-    //         street: obj.street,
-    //         zipCode: obj.zipCode,
-    //         city: obj.city,
-    //     }
-    // }
 
     async deleteUser(userId: string) {
         try {

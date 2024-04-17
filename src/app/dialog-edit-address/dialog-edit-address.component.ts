@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FirebaseService } from '../firebase-service/firebase.service';
-import { MatDialogActions, MatDialogClose, MatDialogContent, 
-  MatDialogModule, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
+import {
+  MatDialogActions, MatDialogClose, MatDialogContent,
+  MatDialogModule, MatDialogRef, MatDialogTitle
+} from '@angular/material/dialog';
 import { User } from '../../models/user.class';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,32 +17,35 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 @Component({
   selector: 'app-dialog-edit-address',
   standalone: true,
-  imports: [MatDialogModule, MatInputModule, FormsModule, MatFormFieldModule, MatButtonModule, 
-    MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose, MatIconModule, 
+  imports: [MatDialogModule, MatInputModule, FormsModule, MatFormFieldModule, MatButtonModule,
+    MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose, MatIconModule,
     MatDatepickerModule, MatProgressBarModule, CommonModule],
   templateUrl: './dialog-edit-address.component.html',
   styleUrl: './dialog-edit-address.component.scss'
 })
 export class DialogEditAddressComponent {
   user = new User();
+  userId: string | any;
   loading = false;
   birthDate: Date | any;
   constructor(private firebaseService: FirebaseService, public dialogRef: MatDialogRef<DialogEditAddressComponent>) {
 
   }
 
-  onNoClick(){
+  onNoClick() {
     this.dialogRef.close();
   }
 
-  saveUser(){
-    this.user.birthDate = this.birthDate.getTime();
+  saveUser() {
     this.loading = true;
-    // this.firebaseService.addUser(this.user);
-
-    setTimeout(() => {
-      this.loading = false;
-      this.dialogRef.close();
-    }, 1500);
-  } 
+    if (this.userId) {
+      this.firebaseService.updateUser(this.userId, this.user).then(() => {
+        // console.log('User updated', this.user);
+        setTimeout(() => {
+          this.loading = false;
+          this.dialogRef.close();
+        }, 1000);
+      });
+    }
+  }
 }
